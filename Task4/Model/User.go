@@ -26,10 +26,8 @@ func (u *User) Exist() bool {
 	return u.ID > 0
 }
 
-func (u *User) LoginVerify() bool {
-	inputPsd := u.Password
+func (u *User) LoginVerify() {
 	db.Model(u).Select("id, password").Where("name", u.Name).Find(u)
-	return inputPsd == u.Password
 }
 
 func (u *User) GetPosts() (posts []PostBaseInfo) {

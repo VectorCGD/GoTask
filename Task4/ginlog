@@ -5,13 +5,13 @@
  - using code:	gin.SetMode(gin.ReleaseMode)
 
 [GIN-debug] Loaded HTML Templates (7): 
-	- home.html
-	- login.html
-	- postList.html
 	- register.html
 	- 
 	- displayPost.html
 	- editPost.html
+	- home.html
+	- login.html
+	- postList.html
 
 [GIN-debug] GET    /static/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
 [GIN-debug] HEAD   /static/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)

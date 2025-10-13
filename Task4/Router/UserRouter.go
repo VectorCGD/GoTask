@@ -8,6 +8,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
 )
 
 const jwtSecurityStr string = "BockWeb2Login8Security0String5"
@@ -57,6 +58,12 @@ func register(ctx *gin.Context) {
 	if user.Name == "" || user.Password == "" || user.Email == "" {
 		ctx.String(http.StatusOK, "数据异常")
 	}
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
+	if err != nil {
+		ctx.String(http.StatusBadRequest, "密码字符异常")
+		return
+	}
+	user.Password = string(hashedPassword)
 	if user.Register() {
 		ctx.String(http.StatusOK, "成功注册")
 	} else {
@@ -65,17 +72,19 @@ func register(ctx *gin.Context) {
 }
 
 func loginVerify(ctx *gin.Context) {
-	user := model.User{Name: ctx.PostForm("user"), Password: ctx.PostForm("psd")}
-	if user.LoginVerify() {
-		tokenS, err := jwtString(int(user.ID), user.Name)
-		if err != nil {
-			ctx.String(http.StatusOK, "登录数据异常")
-		} else {
-			ctx.SetCookie("token", tokenS, 20000, "/home", "", false, true)
-			ctx.Redirect(http.StatusPermanentRedirect, "/home")
-		}
+	user := model.User{Name: ctx.PostForm("user")}
+	user.LoginVerify()
+	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(ctx.PostForm("psd")))
+	if err != nil {
+		ctx.String(http.StatusBadRequest, "用户名或密码错误")
+		return
+	}
+	tokenS, err := jwtString(int(user.ID), user.Name)
+	if err != nil {
+		ctx.String(http.StatusInternalServerError, "登录数据异常")
 	} else {
-		ctx.String(http.StatusOK, "用户名或密码错误")
+		ctx.SetCookie("token", tokenS, 20000, "/home", "", false, true)
+		ctx.Redirect(http.StatusPermanentRedirect, "/home")
 	}
 }
 
