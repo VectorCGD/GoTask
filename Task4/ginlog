@@ -1,0 +1,31 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] Loaded HTML Templates (7): 
+	- home.html
+	- login.html
+	- postList.html
+	- register.html
+	- 
+	- displayPost.html
+	- editPost.html
+
+[GIN-debug] GET    /static/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+[GIN-debug] HEAD   /static/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+[GIN-debug] POST   /register                 --> BockWeb/Router.register (3 handlers)
+[GIN-debug] POST   /loginVerify              --> BockWeb/Router.loginVerify (3 handlers)
+[GIN-debug] GET    /home                     --> BockWeb/Router.directLogin (3 handlers)
+[GIN-debug] POST   /home                     --> BockWeb/Router.directLogin (3 handlers)
+[GIN-debug] POST   /home/publishPost         --> BockWeb/Router.publishPost (3 handlers)
+[GIN-debug] GET    /post/:id                 --> BockWeb/Router.postDisplay (3 handlers)
+[GIN-debug] POST   /home/editPost/:id        --> BockWeb/Router.editPost (3 handlers)
+[GIN-debug] POST   /home/updatePost          --> BockWeb/Router.updatePost (3 handlers)
+[GIN-debug] POST   /home/deletePost/:id      --> BockWeb/Router.deletePost (3 handlers)
+[GIN-debug] POST   /home/comment/:post_id    --> BockWeb/Router.comment (3 handlers)
+[GIN-debug] GET    /Posts/:uname             --> BockWeb/Router.postsListDisplay (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://github.com/gin-gonic/gin/blob/master/docs/doc.md#dont-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8080

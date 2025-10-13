@@ -1,0 +1,26 @@
+{{ if eq .Home "true" }}
+    {{ range $idx,$post := .Posts }}
+    <div>
+        <a href="/post/{{$post.Id}}">{{$post.Title}}</a>
+        <form style="display: inline-block; margin-right: 10px;" 
+        action="/home/editPost/{{$post.Id}}" 
+        method="post">
+            <input type="submit" value="修改"></form>
+        <form style="display: inline-block; margin-right: 10px;" 
+        action="/home/deletePost/{{$post.Id}}" 
+        method="post">
+            <input type="submit" value="删除">
+        </form>
+    </div><br>
+    {{else}}
+        还未发布文章
+    {{ end }}
+{{else}}
+    {{ range $idx,$post := .Posts }}
+    <div>
+        <a href="/post/{{$post.Id}}">{{$post.Title}}</a>
+    </div><br>
+    {{else}}
+        还未发布文章
+    {{ end }}
+{{ end }}

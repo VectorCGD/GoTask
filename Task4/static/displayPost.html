@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h2>{{.Title}}</h2>
+        <h4>作者:<a href="/Posts/{{.Author}}">{{.Author}}</a></h4>
+        <text>{{.Content}}</text>
+        <div>————————————评论————————————</div>
+        {{ range $index,$cmt := .Comments }}
+        <div>{{$cmt.Cor}}：{{$cmt.Content}}</div>
+        {{else}}
+        无评论
+        {{ end }}
+        <div>————————————评论————————————</div>
+        <div>
+            <form action="/home/comment/{{.PostId}}" method="post">
+                <textarea name="content" rows="10" cols="60"></textarea><br>
+                <input type="hidden" name="post_id" value={{.PostId}} />
+                <input type="submit" value="评论"/>
+            </form>
+        </div>
+        <a href="/home">主页</a>
+    </body>
+</html>
