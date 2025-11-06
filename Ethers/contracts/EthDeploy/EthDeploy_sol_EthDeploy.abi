@@ -1,0 +1,1 @@
+[{"inputs":[],"name":"GetData","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_data","type":"string"}],"name":"SetData","outputs":[],"stateMutability":"nonpayable","type":"function"}]
